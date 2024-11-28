@@ -1,5 +1,7 @@
 from django.contrib import admin
+from .models import Material, Product, ProductMaterial  # モデルをインポート
 
-# Register your models here.
-from .models import SampleDB 
-admin.site.register(SampleDB) 
+# 管理画面の登録
+admin.site.register(Material)
+admin.site.register(Product)
+admin.site.register(ProductMaterial)

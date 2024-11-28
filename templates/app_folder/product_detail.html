@@ -1,0 +1,14 @@
+<h1>{{ product.name }}</h1>
+<p>カテゴリー: {{ product.category }}</p>
+<p>在庫: {{ product.stock }}</p>
+
+<h2>必要な材料</h2>
+<ul>
+    {% for material in materials %}
+        <li>
+            {{ material.material.name }}: {{ material.required_quantity }} {{ material.material.unit }}
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'product_list' %}">商品一覧に戻る</a>
