@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'app_config.urls'
@@ -78,8 +80,8 @@ WSGI_APPLICATION = 'app_config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',  # 使用するデータベースエンジン
+        'NAME': BASE_DIR / 'db.sqlite3',  # データベースファイルのパス
     }
 }
 
@@ -129,6 +131,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_NAME = os.path.basename(BASE_DIR)
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] 
 STATIC_ROOT = '/var/www/{}/static'.format(PROJECT_NAME)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #media file 
 MEDIA_URL = '/media/'

@@ -1,9 +1,29 @@
-<h1>商品リスト</h1>
-<ul>
-    {% for product in products %}
-        <li>
-            <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
-            (在庫: {{ product.stock }})
-        </li>
-    {% endfor %}
-</ul>
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在庫管理</title>
+    <!-- CSSファイルのリンク -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>商品在庫管理</h1>
+
+        <!-- 商品リスト -->
+        {% for product in products %}
+        <div>
+            <h2>{{ product.name }}</h2>
+            <p>在庫: {{ product.stock }}</p>
+            <!-- 商品IDをdata-id属性に保存 -->
+            <button data-id="{{ product.id }}">在庫を減少させる</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- JavaScriptファイルのリンク -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
