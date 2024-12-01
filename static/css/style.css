@@ -1,32 +1,86 @@
+/* 全体のスタイル */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f5;  /* 柔らかい背景色 */
+    color: #333;  /* 文字色 */
     margin: 0;
     padding: 0;
+    line-height: 1.6;
 }
 
+/* コンテナ */
 .container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
+    width: 85%;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #ffffff;  /* 白い背景 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* 軽いシャドウを追加 */
+    border-radius: 8px;  /* 角を丸める */
 }
 
+/* ヘッダー */
 h1 {
     color: #333;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;  /* 見出しを大文字に */
 }
 
+/* ボタン */
 button {
-    background-color: #4CAF50;
+    background-color: #5C6BC0;  /* 落ち着いた紫色 */
     color: white;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border: none;
+    border-radius: 5px;  /* ボタンを丸みを帯びたデザインに */
+    font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;  /* アニメーション */
 }
 
+/* ホバー時のボタン */
 button:hover {
-    background-color: #45a049;
+    background-color: #3f51b5;  /* ホバー時に少し暗くなる */
+    transform: scale(1.05);  /* ボタンを少し拡大 */
 }
 
+/* フォームコンテナ */
 .form-container {
-    margin-top: 20px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 入力フィールド */
+input[type="text"], input[type="email"], input[type="password"], textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+/* 入力フィールドのフォーカス時 */
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
+    border-color: #5C6BC0;
+    outline: none;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    button {
+        padding: 10px 20px;
+    }
 }

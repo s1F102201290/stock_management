@@ -4,11 +4,6 @@ from django.http import JsonResponse
 from .models import Product, Material, ProductMaterial
 
 
-class SampleView(View):  
-	def get(self, request, *args, **kwargs):  
-		return render(request, 'app_folder/top_page.html')
-     
-
 class ProductListView(View):
     """
     商品の一覧を表示するビュー
@@ -34,15 +29,24 @@ class ProductDetailView(View):
         return render(request, 'app_folder/product_detail.html', context)
 
 def reduce_product_stock(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
-    try:
-        product.reduce_stock()
-        return JsonResponse({'success': True, 'message': f"{product.name}の在庫を1減少しました。"})
-    except ValueError as e:
-        return JsonResponse({'success': False, 'message': str(e)})
+    if request.method == 'POST':
+        # 商品を取得
+        product = get_object_or_404(Product, id=product_id)
+
+        try:
+            # 商品在庫を減らし、材料の在庫も減少させる
+            product.reduce_stock()
+            return JsonResponse({
+                'success': True,
+                'message': f'{product.name}の在庫が減少しました。',
+            })
+        except ValueError as e:
+            return JsonResponse({
+                'success': False,
+                'message': str(e),
+            })
 
 
 # ビュー関数のエイリアス
 product_list = ProductListView.as_view()
 product_detail = ProductDetailView.as_view()
-top_page = SampleView.as_view()

@@ -1,14 +1,29 @@
-<h1>{{ product.name }}</h1>
-<p>カテゴリー: {{ product.category }}</p>
-<p>在庫: {{ product.stock }}</p>
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在庫管理</title>
+    <!-- CSSファイルのリンク -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
 
-<h2>必要な材料</h2>
-<ul>
-    {% for material in materials %}
-        <li>
-            {{ material.material.name }}: {{ material.required_quantity }} {{ material.material.unit }}
-        </li>
-    {% endfor %}
-</ul>
-
-<a href="{% url 'product_list' %}">商品一覧に戻る</a>
+<body></body>
+{% block content %}
+<div class="container mt-5">
+    <h1>{{ product.name }}</h1>
+    <p>価格: {{ product.price }}円</p>
+    <p>在庫: {{ product.stock }}</p>
+    <h3>必要な材料:</h3>
+    <ul>
+        {% for material in materials %}
+        <li>{{ material.material.name }} - {{ material.quantity }}{{ material.material.unit }}</li>
+        {% endfor %}
+    </ul>
+    {% csrf_token %}
+        <button data-id="{{ product.id }}">在庫を減少させる</button>
+</div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+{% endblock %}
