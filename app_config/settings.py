@@ -27,7 +27,11 @@ SECRET_KEY = 'django-insecure-%9bay_==-9n(!qrmnu29j5#yb1d6l5k)=(rx-d10_0_do&r)3=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'inventory-management-37bmu3ei2a-an.a.run.app',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -105,6 +109,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://inventory-management-37bmu3ei2a-an.a.run.app',
+]
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -131,10 +140,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 
 PROJECT_NAME = os.path.basename(BASE_DIR)
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] 
-STATIC_ROOT = '/var/www/{}/static'.format(PROJECT_NAME)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #media file 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+SESSION_COOKIE_DOMAIN = '.inventory-management-37bmu3ei2a-an.a.run.app'
+CSRF_COOKIE_DOMAIN = '.inventory-management-37bmu3ei2a-an.a.run.app'
+
+DEBUG = False
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+
+
+
 

@@ -19,7 +19,7 @@
             <p>在庫: {{ product.stock }}</p>
             <!-- 商品IDをdata-id属性に保存 -->
             {% csrf_token %}
-            <button data-id="{{ product.id }}">在庫を減少させる</button>
+            <button data-id="{{ product.id }}">在庫減</button>
         </div>
         {% endfor %}
     </div>
