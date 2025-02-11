@@ -56,7 +56,7 @@ options:
   dynamicSubstitutions: true
 
 substitutions:
-  _INSTANCE_NAME: stock-inventory
+  _INSTANCE_NAME: stock-tm
   _CLOUD_SQL_CONNECTION_NAME: ${PROJECT_ID}:${_REGION}:${_INSTANCE_NAME}
   _REGION: asia-northeast1
   _SERVICE_NAME: inventory_stock
